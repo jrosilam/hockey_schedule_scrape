@@ -91,10 +91,12 @@ def get_schedule(dict_links,df_all_teams):
 ## Given Items
 # find schedules for these teams
 team_names = ['Team Beer','Team America']
-dict_links = {'team_name':[],'href_link':[]} # empty dict
-df_all_teams = pd.DataFrame() # empty df
 # main hockey URL page
 url_main_league = 'https://stats.sharksice.timetoscore.com/display-stats.php?league=1'
+
+# make empty dicts or dfs
+dict_links = {'team_name':[],'href_link':[]} # empty dict
+df_all_teams = pd.DataFrame() # empty df
 
 # get sublinks
 dict_links = get_sublinks(url_main_league,team_names)
