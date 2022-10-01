@@ -102,7 +102,7 @@ df_all_teams = pd.DataFrame() # empty df
 dict_links = get_sublinks(url_main_league,team_names)
 
 # get all schdules
-df_all_teams,schedule_data,schedule_data_remaining = get_schedule(dict_links,df_all_teams)
+df_all_teams, schedule_data, schedule_data_remaining = get_schedule(dict_links,df_all_teams)
 
 print(dict_links)
 print(df_all_teams)
