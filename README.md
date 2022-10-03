@@ -54,7 +54,7 @@ All Team Schedule, games left
 3  Team America  Kraken More Beers  Tue, Oct 18 @ 11:15 PM        Grey  Light      Home
 4     Team Beer   Seal Team Sticks  Sat, Oct 22 @ 09:30 PM      Sharks  Light      Home
 
-Schedule pulled on Mon Oct 03 2022 01:23 PM
+Schedule pulled on "Mon Oct 03 2022 01:26 PM"
 
 Schedules printed in "D:\Documents\code"
 ```

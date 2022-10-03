@@ -108,7 +108,7 @@ def print_save(df_all_teams,schedule_data,schedule_data_remaining):
     print(schedule_data_remaining)
 
     ## print to csv
-    print(f"\nSchedule pulled on {pd.to_datetime('today').strftime('%a %b %d %Y %I:%M %p')}")
+    print(f"\nSchedule pulled on \"{pd.to_datetime('today').strftime('%a %b %d %Y %I:%M %p')}\"")
     print(f"\nSchedules printed in \"{os.getcwd()}\"\n")
 
     schedule_data.to_csv('all_team_schedule.csv')
