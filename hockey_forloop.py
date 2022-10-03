@@ -6,6 +6,12 @@ from datetime import datetime as dt
 from urllib.parse import urlparse
 import os
 
+## Given Items & Just Change Team Names!
+# find schedules for these teams
+team_names = ['Team Beer','Team America']
+# main hockey URL page
+url_main_league = 'https://stats.sharksice.timetoscore.com/display-stats.php?league=1'
+
 ## functions
 def get_sublinks(url_main_league,team_names):
     page_hockey_main = requests.get(url_main_league)
@@ -91,11 +97,22 @@ def get_schedule(dict_links,df_all_teams):
     ## return data_frames
     return df_all_teams, schedule_data, schedule_data_remaining
 
-## Given Items
-# find schedules for these teams
-team_names = ['Team Beer','Team America']
-# main hockey URL page
-url_main_league = 'https://stats.sharksice.timetoscore.com/display-stats.php?league=1'
+def print_save(dict_links,df_all_teams,schedule_data,schedule_data_remaining):
+    print(dict_links)
+    print(df_all_teams)
+
+    ## print to terminal stuff
+    print('\nAll Team Schedule')
+    print(schedule_data)
+
+    print('\nAll Team Schedule, games left')
+    print(schedule_data_remaining)
+
+    ## print to csv
+    print(f"\nSchedules printed in \"{os.getcwd()}\"\n")
+
+    schedule_data.to_csv('all_team_schedule.csv')
+    schedule_data_remaining.to_csv('all_team_schedule_remaining.csv')
 
 # make empty dicts or dfs
 dict_links = {'team_name':[],'href_link':[]} # empty dict
@@ -104,21 +121,8 @@ df_all_teams = pd.DataFrame() # empty df
 # get sublinks
 dict_links = get_sublinks(url_main_league,team_names)
 
-# get all schdules
+# get all schedules
 df_all_teams, schedule_data, schedule_data_remaining = get_schedule(dict_links,df_all_teams)
 
-print(dict_links)
-print(df_all_teams)
-
-## print to terminal stuff
-print('\nAll Team Schedule')
-print(schedule_data)
-
-print('\nAll Team Schedule, games left')
-print(schedule_data_remaining)
-
-## print to csv
-print(f"\nSchedules printed in \"{os.getcwd()}\"\n")
-
-schedule_data.to_csv('all_team_schedule.csv')
-schedule_data_remaining.to_csv('all_team_schedule_remaining.csv')
+# print schedules
+print_save(dict_links,df_all_teams,schedule_data,schedule_data_remaining)
