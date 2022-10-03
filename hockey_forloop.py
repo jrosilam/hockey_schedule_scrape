@@ -4,6 +4,7 @@ import pandas as pd
 import numpy as np
 from datetime import datetime as dt
 from urllib.parse import urlparse
+import os
 
 ## functions
 def get_sublinks(url_main_league,team_names):
@@ -109,9 +110,15 @@ df_all_teams, schedule_data, schedule_data_remaining = get_schedule(dict_links,d
 print(dict_links)
 print(df_all_teams)
 
-## print stuff
+## print to terminal stuff
 print('\nAll Team Schedule')
 print(schedule_data)
 
 print('\nAll Team Schedule, games left')
 print(schedule_data_remaining)
+
+## print to csv
+print(f"\nSchedules printed in \"{os.getcwd()}\"\n")
+
+schedule_data.to_csv('all_team_schedule.csv')
+schedule_data_remaining.to_csv('all_team_schedule_remaining.csv')
