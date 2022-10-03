@@ -1,15 +1,24 @@
 # hockey_schedule_scrape
-This was made by Jesus R Rosila Mares to schedule and plan better. 
+This was made by Jesus R Rosila Mares to schedule and plan better.   
 (aswell as figure out what jersey color we are)
 
 ## How to use:
 Just edit `team_names` in `hockey_game_scraper.py` and run!   
 The following should populate, terminal print statments   
-And saved `.csv` files named:   
+And saved `*.csv` files named:   
 - `all_team_schedule.csv`
 - `all_team_schedule_remaining.csv`
 
-## expected output:
+## Expected Input:
+Adjust teamnames to whatever team you are using. 
+```py 
+# find schedules for these teams
+team_names = ['Team Beer','Team America']
+# main hockey URL page
+url_main_league = 'https://stats.sharksice.timetoscore.com/display-stats.php?league=1'
+```
+
+## Expected Output:
 ```sh
 Index: 0, Team Name: Team America, URL: https://stats.sharksice.timetoscore.com/display-schedule?team=2297&season=55&league=1&stat_class=1
 Index: 1, Team Name: Team Beer, URL: https://stats.sharksice.timetoscore.com/display-schedule?team=4637&season=55&league=1&stat_class=1
