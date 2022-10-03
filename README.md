@@ -5,9 +5,9 @@ This was made by Jesus R Rosila Mares to schedule and plan better.
 ## How to use:
 Just edit `team_names` in `hockey_game_scraper.py` and run!   
 The following should populate, terminal print statments   
-And saved `.csv` files named:
-    - `all_team_schedule.csv`
-    - `all_team_schedule_remaining.csv`
+And saved `.csv` files named:   
+- `all_team_schedule.csv`
+- `all_team_schedule_remaining.csv`
 
 ## expected output:
 ```sh
