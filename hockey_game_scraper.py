@@ -98,19 +98,20 @@ def get_schedule(dict_links,df_all_teams):
     return df_all_teams, schedule_data, schedule_data_remaining
 
 def print_save(df_all_teams,schedule_data,schedule_data_remaining):
-    print(df_all_teams)
 
     ## print to terminal stuff
+    print(df_all_teams)
+    
     print('\nAll Team Schedule')
     print(schedule_data)
 
     print('\nAll Team Schedule, games left')
     print(schedule_data_remaining)
 
-    ## print to csv
     print(f"\nSchedule pulled on \"{pd.to_datetime('today').strftime('%a %b %d %Y %I:%M %p')}\"")
+    
+    ## print to csv
     print(f"\nSchedules printed in \"{os.getcwd()}\"\n")
-
     schedule_data.to_csv('all_team_schedule.csv')
     schedule_data_remaining.to_csv('all_team_schedule_remaining.csv')
 
