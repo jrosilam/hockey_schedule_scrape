@@ -1,7 +1,16 @@
 # hockey_schedule_scrape
-This was made by Jesus R Rosila Mares to schedule and plan better.   
+This was made by [Jesus R Rosila Mares](https://github.com/jrosilam) to find hockey schedule and plan better.   
 (aswell as figure out what jersey color we are)
 
+# Table of Contents
+- [hockey_schedule_scrape](#hockey-schedule-scrape)
+- [Table of Contents](#table-of-contents)
+- [Example](#example)
+  * [How to use:](#how-to-use-)
+  * [Expected Input:](#expected-input-)
+  * [Expected Output:](#expected-output-)
+
+# Example
 ## How to use:
 Just edit `team_names` in `hockey_game_scraper.py` and run!   
 The following should populate, terminal print statments   
@@ -19,7 +28,7 @@ url_main_league = 'https://stats.sharksice.timetoscore.com/display-stats.php?lea
 ```
 
 ## Expected Output:
-```sh
+```powershell
 Index: 0, Team Name: Team America, URL: https://stats.sharksice.timetoscore.com/display-schedule?team=2297&season=55&league=1&stat_class=1
 Index: 1, Team Name: Team Beer, URL: https://stats.sharksice.timetoscore.com/display-schedule?team=4637&season=55&league=1&stat_class=1
 All Team Schedule
@@ -47,3 +56,6 @@ All Team Schedule, games left
 
 Schedules printed in "D:\Documents\code"
 ```
+
+----
+Created by: [@jrosilam](https://github.com/jrosilam)
