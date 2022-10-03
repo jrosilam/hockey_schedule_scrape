@@ -28,7 +28,7 @@ url_main_league = 'https://stats.sharksice.timetoscore.com/display-stats.php?lea
 ```
 
 ## Expected Output:
-```powershell
+```terminal
 Index: 0, Team Name: Team America, URL: https://stats.sharksice.timetoscore.com/display-schedule?team=2297&season=55&league=1&stat_class=1
 Index: 1, Team Name: Team Beer, URL: https://stats.sharksice.timetoscore.com/display-schedule?team=4637&season=55&league=1&stat_class=1
 All Team Schedule
@@ -53,6 +53,8 @@ All Team Schedule, games left
 2     Team Beer    3rd Line Scrubs  Sun, Oct 16 @ 07:00 PM        Grey   Dark      Away
 3  Team America  Kraken More Beers  Tue, Oct 18 @ 11:15 PM        Grey  Light      Home
 4     Team Beer   Seal Team Sticks  Sat, Oct 22 @ 09:30 PM      Sharks  Light      Home
+
+Schedule pulled on Mon Oct 03 2022 01:23 PM
 
 Schedules printed in "D:\Documents\code"
 ```

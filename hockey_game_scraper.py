@@ -97,8 +97,7 @@ def get_schedule(dict_links,df_all_teams):
     ## return data_frames
     return df_all_teams, schedule_data, schedule_data_remaining
 
-def print_save(dict_links,df_all_teams,schedule_data,schedule_data_remaining):
-    print(dict_links)
+def print_save(df_all_teams,schedule_data,schedule_data_remaining):
     print(df_all_teams)
 
     ## print to terminal stuff
@@ -109,6 +108,7 @@ def print_save(dict_links,df_all_teams,schedule_data,schedule_data_remaining):
     print(schedule_data_remaining)
 
     ## print to csv
+    print(f"\nSchedule pulled on {pd.to_datetime('today').strftime('%a %b %d %Y %I:%M %p')}")
     print(f"\nSchedules printed in \"{os.getcwd()}\"\n")
 
     schedule_data.to_csv('all_team_schedule.csv')
@@ -125,4 +125,4 @@ dict_links = get_sublinks(url_main_league,team_names)
 df_all_teams, schedule_data, schedule_data_remaining = get_schedule(dict_links,df_all_teams)
 
 # print schedules
-print_save(dict_links,df_all_teams,schedule_data,schedule_data_remaining)
+print_save(df_all_teams,schedule_data,schedule_data_remaining)
