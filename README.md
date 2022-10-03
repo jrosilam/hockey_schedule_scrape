@@ -1,4 +1,4 @@
-# hockey_schedule_scrape
+# hockey_schedule_scrape Git Repo
 This was made by [Jesus R Rosila Mares](https://github.com/jrosilam) to find hockey schedule and plan better.   
 (aswell as figure out what jersey color we are)
 
