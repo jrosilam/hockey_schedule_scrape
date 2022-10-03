@@ -47,11 +47,13 @@ def get_schedule(dict_links,df_all_teams):
         df_hockey_games['Game_datetime'] = current_datetime_fix
 
         ## get bench and jersey color
-        # team_name = 'Team America'
         idx_team_side = df_hockey_games['Home'] == team_name
         df_hockey_games['Team_side'] = pd.DataFrame(np.where(idx_team_side,'Home','Away'))
         df_hockey_games['Jersey']    = pd.DataFrame(np.where(idx_team_side,'Light','Dark'))
 
+        ## playing against
+        df_hockey_games['vs_team'] = pd.concat([df_hockey_games['Home'][~idx_team_side],df_hockey_games['Away'][idx_team_side]]).sort_index()
+        
         ## fix goals and determine shootout
         shootout_decider = pd.DataFrame([df_hockey_games['Goals_Home'].astype(str).str[-1] == 'S'] or [df_hockey_games['Goals_Away'].astype(str).str[-1] == 'S']).transpose()
         df_hockey_games['Shootout_decider'] = shootout_decider
@@ -72,13 +74,13 @@ def get_schedule(dict_links,df_all_teams):
 
     ## clean data        
     ## reorder
-    cols_to_order = ['index', 'Game', 'team_name', 'Game_datetime_neat', 'Rink', 'Team_side', 'Jersey']
+    cols_to_order = ['index', 'Game', 'team_name', 'vs_team', 'Game_datetime_neat', 'Rink', 'Team_side', 'Jersey']
     new_columns = cols_to_order + (df_all_teams.columns.drop(cols_to_order).tolist())
     df_all_teams = df_all_teams[new_columns]
     df_all_teams
 
     ## subq-date
-    schedule_data = df_all_teams.loc[:,['team_name', 'Upcoming_game', 'Game_datetime', 'Game_datetime_neat', 'Rink', 'Jersey', 'Team_side']]
+    schedule_data = df_all_teams.loc[:,['team_name', 'vs_team', 'Upcoming_game', 'Game_datetime', 'Game_datetime_neat', 'Rink', 'Jersey', 'Team_side']]
     schedule_data.sort_values(by='Game_datetime', ascending=True, inplace=True)
     schedule_data.drop(columns='Game_datetime',inplace=True)
 
