@@ -1,16 +1,27 @@
 from __future__ import print_function
 from calendar import c
 
+import hockey_game_scraper
 import os.path
 import numpy as np
 import pandas as pd
 
-from datetime import datetime
+from datetime import datetime, timedelta, timezone
 from google.auth.transport.requests import Request
 from google.oauth2.credentials import Credentials
 from google_auth_oauthlib.flow import InstalledAppFlow
 from googleapiclient.discovery import build
 from googleapiclient.errors import HttpError
+
+## Given Items & Just Change Team Names!
+# delete old hockey games?
+remove_old_hockey = False
+# find schedules for these teams
+team_names = ['Team Beer','Team America']
+# main hockey URL page
+url_main_league = 'https://stats.sharksice.timetoscore.com/display-stats.php?league=1'
+# ice rink hockey SJ
+address_hockey = '1500 S 10th St, San Jose, CA 95112'
 
 # API access info
 # CLINET_SECRET_FILE = 'credentials.json'
@@ -43,58 +54,74 @@ def main():
     try:
         # build gCal API service
         service = build(API_NAME, API_VERSION, credentials=creds)
-        now = datetime.utcnow().isoformat() + 'Z'  # 'Z' indicates UTC time
+        now = pd.to_datetime('today')
         
         # Call the Calendar API, Get Hockey list
         list_name = []
         list_date = []
+        list_id = []
         page_token = None
         
         while True:
             events = service.events().list(calendarId=calendar_id_hockey, pageToken=page_token).execute()
             for event in events['items']:
                 start = event['start'].get('dateTime', event['start'].get('date'))
-                start = datetime.strptime(start,"%Y-%m-%dT%H:%M:%S%z")
+                start = datetime.strptime(start,"%Y-%m-%dT%H:%M:%S%z").replace(tzinfo=None)
                 list_name.append(event['summary'])
                 list_date.append(start)
+                list_id.append(event['id'])
                 page_token = events.get('nextPageToken')
             if not page_token:
                 break
         
         cal_df = pd.DataFrame({'description':list_name,
-                               'date':list_date}) 
+                               'date':list_date, 
+                               'id':list_id})
         print(cal_df)
         
-        # TODO: call hockey_game_scraper.py, get upcoming games
+        # call hockey_game_scraper.py, get games
+        schedule_data, schedule_data_remaining = hockey_game_scraper.run_scraper(team_names,url_main_league)
+        # compare hockey list
+        add_index = ~schedule_data['Game_datetime'].isin(cal_df['date'])
+        delete_index = cal_df['date'] < now
+        # send new events to calendar
+        if not any(add_index):
+            print("No new hockey games to add")
+        else:
+            print('Create Hockey Schedule')
+            for index, record in schedule_data[add_index].iterrows():
+                # print(record)
+                event = {
+                'summary': f"{record['team_name']} Vs. {record['vs_team']}",
+                'location': address_hockey,
+                'description': f"Rink: {record['Rink']}\nJersey: {record['Jersey']}\nBench: {record['Team_side']}",
+                'start': {
+                    'dateTime': record['Game_datetime'].strftime("%Y-%m-%dT%H:%M:%S%z"),
+                    'timeZone': 'America/Los_Angeles',
+                },
+                'end': {
+                    'dateTime': (record['Game_datetime'] + timedelta(hours=1)).strftime("%Y-%m-%dT%H:%M:%S%z"),
+                    'timeZone': 'America/Los_Angeles',
+                },
+                'reminders': {
+                    'useDefault': False,
+                    'overrides': [
+                    {'method': 'email', 'minutes': 24 * 60},
+                    {'method': 'popup', 'minutes': 60},
+                    ],
+                },
+                }
+                event = service.events().insert(calendarId=calendar_id_hockey, body=event).execute()
+                print('Event created: %s' % (event.get('htmlLink')))
         
-        # TODO: Upload filtered Hockey list to calendar
-        print('Create Hockey Schedule')
-        event = {
-        'summary': 'Google I/O 2015',
-        'location': '800 Howard St., San Francisco, CA 94103',
-        'description': 'A chance to hear more about Google\'s developer products.',
-        'start': {
-            'dateTime': '2022-10-22T09:00:00-07:00',
-            'timeZone': 'America/Los_Angeles',
-        },
-        'end': {
-            'dateTime': '2022-10-22T17:00:00-07:00',
-            'timeZone': 'America/Los_Angeles',
-        },
-        'reminders': {
-            'useDefault': False,
-            'overrides': [
-            {'method': 'email', 'minutes': 24 * 60},
-            {'method': 'popup', 'minutes': 60},
-            ],
-        },
-        }
-        event = service.events().insert(calendarId=calendar_id_hockey, body=event).execute()
-        print('Event created: %s' % (event.get('htmlLink')))
-        
-        # TODO: Delete Old Hockey games from calendar
-        
-        
+        # Delete Old Hockey games from calendar
+        if remove_old_hockey:
+            if not any(delete_index):
+                print("No new hockey games to add")
+            else:
+                print('Delete Old Hockey Schedule')
+                for index, record in cal_df[delete_index].iterrows():
+                    service.events().delete(calendarId=calendar_id_hockey, eventId=record['id']).execute()
         
     except HttpError as error:
         print('An error occurred: %s' % error)

@@ -122,6 +122,7 @@ def run_scraper(team_names,url_main_league):
 
     # print schedules
     print_save(df_all_teams,schedule_data,schedule_data_remaining)
+    return schedule_data, schedule_data_remaining
 
 if __name__ == '__main__':
     ## Given Items & Just Change Team Names!
