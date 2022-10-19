@@ -1,13 +1,13 @@
-,team_name,vs_team,Upcoming_game,Game_datetime_neat,Rink,Jersey,Team_side
-0,Team Beer,Flying Pandas,False,"Sat, Sep 03 @ 09:45 PM",Orange (N),Dark,Away
-0,Team America,Beerbears on Ice,False,"Sat, Sep 10 @ 08:00 PM",Grey,Dark,Away
-1,Team America,Cereal Killers,False,"Mon, Sep 19 @ 11:15 PM",Grey,Light,Home
-2,Team America,Beerbears on Ice,False,"Sun, Sep 25 @ 05:45 PM",Sharks,Dark,Away
-1,Team Beer,Choking Hazards,False,"Mon, Sep 26 @ 10:30 PM",Sharks,Light,Home
-3,Team America,Stampede,False,"Wed, Sep 28 @ 09:45 PM",White (C),Dark,Away
-2,Team Beer,Buffalo Wings,False,"Sun, Oct 02 @ 08:45 PM",Sharks,Dark,Away
-3,Team Beer,Schrute Farms,False,"Sun, Oct 09 @ 06:00 PM",Grey,Light,Home
-4,Team America,K-Wings,False,"Sun, Oct 09 @ 09:00 PM",Orange (N),Dark,Away
-4,Team Beer,3rd Line Scrubs,False,"Sun, Oct 16 @ 07:00 PM",Grey,Dark,Away
-5,Team America,Kraken More Beers,False,"Tue, Oct 18 @ 11:15 PM",Grey,Light,Home
-5,Team Beer,Seal Team Sticks,True,"Sat, Oct 22 @ 09:30 PM",Sharks,Light,Home
+team_name,vs_team,Upcoming_game,Game_datetime,Game_datetime_neat,Rink,Jersey,Team_side
+Team Beer,Flying Pandas,False,2022-09-03 21:45:00,"Sat, Sep 03 @ 09:45 PM",Orange (N),Dark,Away
+Team America,Beerbears on Ice,False,2022-09-10 20:00:00,"Sat, Sep 10 @ 08:00 PM",Grey,Dark,Away
+Team America,Cereal Killers,False,2022-09-19 23:15:00,"Mon, Sep 19 @ 11:15 PM",Grey,Light,Home
+Team America,Beerbears on Ice,False,2022-09-25 17:45:00,"Sun, Sep 25 @ 05:45 PM",Sharks,Dark,Away
+Team Beer,Choking Hazards,False,2022-09-26 22:30:00,"Mon, Sep 26 @ 10:30 PM",Sharks,Light,Home
+Team America,Stampede,False,2022-09-28 21:45:00,"Wed, Sep 28 @ 09:45 PM",White (C),Dark,Away
+Team Beer,Buffalo Wings,False,2022-10-02 20:45:00,"Sun, Oct 02 @ 08:45 PM",Sharks,Dark,Away
+Team Beer,Schrute Farms,False,2022-10-09 18:00:00,"Sun, Oct 09 @ 06:00 PM",Grey,Light,Home
+Team America,K-Wings,False,2022-10-09 21:00:00,"Sun, Oct 09 @ 09:00 PM",Orange (N),Dark,Away
+Team Beer,3rd Line Scrubs,False,2022-10-16 19:00:00,"Sun, Oct 16 @ 07:00 PM",Grey,Dark,Away
+Team America,Kraken More Beers,False,2022-10-18 23:15:00,"Tue, Oct 18 @ 11:15 PM",Grey,Light,Home
+Team Beer,Seal Team Sticks,True,2022-10-22 21:30:00,"Sat, Oct 22 @ 09:30 PM",Sharks,Light,Home

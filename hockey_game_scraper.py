@@ -6,14 +6,8 @@ from datetime import datetime as dt
 from urllib.parse import urlparse
 import os
 
-## Given Items & Just Change Team Names!
-# find schedules for these teams
-team_names = ['Team Beer','Team America']
-# main hockey URL page
-url_main_league = 'https://stats.sharksice.timetoscore.com/display-stats.php?league=1'
-
 ## functions
-def get_sublinks(url_main_league,team_names):
+def get_sublinks(dict_links,url_main_league,team_names):
     page_hockey_main = requests.get(url_main_league)
     soup_main = BeautifulSoup(page_hockey_main.content,"html.parser")
     link_names = soup_main.find_all('a',href=True)
@@ -89,7 +83,7 @@ def get_schedule(dict_links,df_all_teams):
     ## subq-date
     schedule_data = df_all_teams.loc[:,['team_name', 'vs_team', 'Upcoming_game', 'Game_datetime', 'Game_datetime_neat', 'Rink', 'Jersey', 'Team_side']]
     schedule_data.sort_values(by='Game_datetime', ascending=True, inplace=True)
-    schedule_data.drop(columns='Game_datetime',inplace=True)
+    # schedule_data.drop(columns='Game_datetime',inplace=True)
 
     ## remaining games
     schedule_data_remaining = schedule_data.loc[schedule_data['Upcoming_game']].reset_index().drop(columns = ['Upcoming_game','index'])
@@ -112,21 +106,27 @@ def print_save(df_all_teams,schedule_data,schedule_data_remaining):
     
     ## print to csv
     print(f"\nSchedules printed in \"{os.getcwd()}\"\n")
-    schedule_data.to_csv('all_team_schedule.csv')
-    schedule_data_remaining.to_csv('all_team_schedule_remaining.csv')
+    schedule_data.to_csv('all_team_schedule.csv',index=False)
+    schedule_data_remaining.to_csv('all_team_schedule_remaining.csv',index=False)
 
-# make empty dicts or dfs
-dict_links = {'team_name':[],'href_link':[]} # empty dict
-df_all_teams = pd.DataFrame() # empty df
+def run_scraper(team_names,url_main_league):
+    # make empty dicts or dfs
+    dict_links = {'team_name':[],'href_link':[]} # empty dict
+    df_all_teams = pd.DataFrame() # empty df
 
-# get sublinks
-dict_links = get_sublinks(url_main_league,team_names)
+    # get sublinks
+    dict_links = get_sublinks(dict_links,url_main_league,team_names)
 
-# get all schedules
-df_all_teams, schedule_data, schedule_data_remaining = get_schedule(dict_links,df_all_teams)
+    # get all schedules
+    df_all_teams, schedule_data, schedule_data_remaining = get_schedule(dict_links,df_all_teams)
 
-# print schedules
-print_save(df_all_teams,schedule_data,schedule_data_remaining)
+    # print schedules
+    print_save(df_all_teams,schedule_data,schedule_data_remaining)
 
-# Google Calendar
-# pip install --upgrade google-api-python-client google-auth-httplib2 google-auth-oauthlib
+if __name__ == '__main__':
+    ## Given Items & Just Change Team Names!
+    # find schedules for these teams
+    team_names = ['Team Beer','Team America']
+    # main hockey URL page
+    url_main_league = 'https://stats.sharksice.timetoscore.com/display-stats.php?league=1'
+    run_scraper(team_names,url_main_league)
