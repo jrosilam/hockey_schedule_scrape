@@ -105,9 +105,13 @@ def print_save(df_all_teams,schedule_data,schedule_data_remaining):
     print(f"\nSchedule pulled on \"{pd.to_datetime('today').strftime('%a %b %d %Y %I:%M %p')}\"")
     
     ## print to csv
+    outdir = './csv'
+    if not os.path.exists(outdir):
+        os.mkdir(outdir)
+    
     print(f"\nSchedules printed in \"{os.getcwd()}\"\n")
-    schedule_data.to_csv('all_team_schedule.csv',index=False)
-    schedule_data_remaining.to_csv('all_team_schedule_remaining.csv',index=False)
+    schedule_data.to_csv('csv/all_team_schedule.csv',index=False)
+    schedule_data_remaining.to_csv('csv/all_team_schedule_remaining.csv',index=False)
 
 def run_scraper(team_names,url_main_league):
     # make empty dicts or dfs
