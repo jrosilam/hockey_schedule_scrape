@@ -127,3 +127,6 @@ df_all_teams, schedule_data, schedule_data_remaining = get_schedule(dict_links,d
 
 # print schedules
 print_save(df_all_teams,schedule_data,schedule_data_remaining)
+
+# Google Calendar
+# pip install --upgrade google-api-python-client google-auth-httplib2 google-auth-oauthlib
