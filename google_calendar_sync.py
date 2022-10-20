@@ -112,7 +112,7 @@ def main():
                 },
                 }
                 event = service.events().insert(calendarId=calendar_id_hockey, body=event).execute()
-                print('Event created: %s' % (event.get('htmlLink')))
+                print(f"{index} Event created: {(event.get('htmlLink'))}")
         
         # Delete Old Hockey games from calendar
         if remove_old_hockey:
@@ -122,9 +122,10 @@ def main():
                 print('Delete Old Hockey Schedule')
                 for index, record in cal_df[delete_index].iterrows():
                     service.events().delete(calendarId=calendar_id_hockey, eventId=record['id']).execute()
+                    print(f"{index} Event deleted: {record['description']} @ {record['date']}")
         
     except HttpError as error:
         print('An error occurred: %s' % error)
 
 if __name__ == '__main__':
-    main()
+        main()
