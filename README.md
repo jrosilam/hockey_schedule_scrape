@@ -19,6 +19,7 @@ This was made by [Jesus R Rosila Mares](https://github.com/jrosilam) to find hoc
 # To-Do
 - [ ] Make job to run every morning.
 - [ ] Update cal for old games showing scores
+- [ ] Update cal for Team A vs. Team B and/or Team A @ Team B.
 - [ ] Streamline Calendar generation for new users.
 - [ ] finish new user section.
 
