@@ -75,18 +75,18 @@ def get_schedule(dict_links,df_all_teams):
 
     ## clean data        
     ## reorder
-    cols_to_order = ['index', 'Game', 'team_name', 'vs_team', 'Game_datetime_neat', 'Rink', 'Team_side', 'Jersey']
+    cols_to_order = ['index', 'Game', 'team_name', 'vs_team', 'Team_side', 'Goals_Home', 'Goals_Away', 'Game_datetime_neat', 'Rink', 'Jersey']
     new_columns = cols_to_order + (df_all_teams.columns.drop(cols_to_order).tolist())
     df_all_teams = df_all_teams[new_columns]
     df_all_teams
 
     ## subq-date
-    schedule_data = df_all_teams.loc[:,['team_name', 'vs_team', 'Upcoming_game', 'Game_datetime', 'Game_datetime_neat', 'Rink', 'Jersey', 'Team_side']]
+    schedule_data = df_all_teams.loc[:,['team_name', 'vs_team', 'Team_side', 'Upcoming_game', 'Goals_Home', 'Goals_Away', 'Game_datetime', 'Game_datetime_neat', 'Rink', 'Jersey']]
     schedule_data.sort_values(by='Game_datetime', ascending=True, inplace=True)
     # schedule_data.drop(columns='Game_datetime',inplace=True)
 
     ## remaining games
-    schedule_data_remaining = schedule_data.loc[schedule_data['Upcoming_game']].reset_index().drop(columns = ['Upcoming_game','index'])
+    schedule_data_remaining = schedule_data.loc[schedule_data['Upcoming_game']].reset_index().drop(columns = ['Upcoming_game','index', 'Goals_Home', 'Goals_Away'])
     
     ## return data_frames
     return df_all_teams, schedule_data, schedule_data_remaining

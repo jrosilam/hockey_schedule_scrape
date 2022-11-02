@@ -90,9 +90,16 @@ def main():
         else:
             print('Create Hockey Schedule')
             for index, record in schedule_data[add_index].iterrows():
-                # print(record)
+                # TO-DO: separate to dif function and update old games (delete and rewrite)
+                # TO-DO: add shootout win/loss, leave empty if they forced to take tie
+                if record['Upcoming_game']:
+                    summary_str = f"{record['team_name']} Vs. {record['vs_team']}"
+                else:
+                    goals_for = np.where(record['Team_side'] == 'Home', record['Goals_Home'], record['Goals_Away'])
+                    goals_against = np.where(record['Team_side'] != 'Home', record['Goals_Home'], record['Goals_Away'])
+                    summary_str = f"{record['team_name']} ({goals_for}) Vs. {record['vs_team']} ({goals_against})"
                 event = {
-                'summary': f"{record['team_name']} Vs. {record['vs_team']}",
+                'summary': summary_str,
                 'location': address_hockey,
                 'description': f"Rink: {record['Rink']}\nJersey: {record['Jersey']}\nBench: {record['Team_side']}",
                 'start': {
