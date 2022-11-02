@@ -30,7 +30,7 @@ API_VERSION = 'v3'
 SCOPES = ['https://www.googleapis.com/auth/calendar']
 calendar_id_hockey = '049ffb2a69b7c97b99ec51811db2cb09eb7c52b2c26d6a461de37da6f3f3438a@group.calendar.google.com'
 
-def get_events(service):
+def get_event(service):
     # Call the Calendar API, Get Hockey list
     list_name = []
     list_date = []
@@ -95,14 +95,20 @@ def create_event(service,schedule_data,add_index):
         event = service.events().insert(calendarId=calendar_id_hockey, body=event).execute()
         print(f"{index} Event created: {(event.get('htmlLink'))}")
 
-def delete_old_games(cal_df,delete_index):
-                if not any(delete_index):
-                    print("No new hockey games to add")
-                else:
-                    print('Delete Old Hockey Schedule')
-                    for index, record in cal_df[delete_index].iterrows():
-                        service.events().delete(calendarId=calendar_id_hockey, eventId=record['id']).execute()
-                        print(f"{index} Event deleted: {record['description']} @ {record['date']}")
+def update_event():
+    #Update old schedule
+    return
+    
+def remove_event(service,cal_df,add_index,delete_index):
+    # Delete Old Hockey games from calendar
+    if remove_old_hockey:
+        remove_event(cal_df,delete_index)
+    else:
+        print('Delete Old Hockey Schedule')
+        for index, record in cal_df[delete_index].iterrows():
+            # remove old events to calendar
+            service.events().delete(calendarId=calendar_id_hockey, eventId=record['id']).execute()
+            print(f"{index} Event deleted: {record['description']} @ {record['date']}")
 
 def main():
     """SJ Adult hockey schedule
@@ -128,7 +134,7 @@ def main():
     try:
         # build gCal API service
         service = build(API_NAME, API_VERSION, credentials=creds)
-        get_events(service)
+        get_event(service)
         
 
         # update old cal game to relect score
@@ -141,15 +147,6 @@ def main():
                 goals_against = np.where(record['Team_side'] != 'Home', record['Goals_Home'], record['Goals_Away'])
                 summary_str = f"{record['team_name']} ({goals_for}) Vs. {record['vs_team']} ({goals_against})"
                     
-        # send new events to calendar
-        if not any(add_index):
-            print("No new hockey games to add")
-        # else:
-
-        
-        # Delete Old Hockey games from calendar
-        if remove_old_hockey:
-            delete_old_games(cal_df,delete_index)
                     
     except HttpError as error:
         print('An error occurred: %s' % error)
