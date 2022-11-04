@@ -76,13 +76,14 @@ def create_event(service,schedule_data,add_index,add_old_flag):
     print(f"{create_update_str} Hockey Schedule")
     for index, record in schedule_data[add_index].iterrows():
         # skip old games from populating 
-        add_index[index] = False
         # add flag to add old games
         # think this thru lol.
         if add_old_flag:
             pass
         elif not record['Upcoming_game']:
             continue
+        
+        add_index[index] = False
         
         if record['Team_side'] == 'Home':
             str_split_bench = 'Vs.'
