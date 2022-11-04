@@ -57,6 +57,7 @@ def get_schedule(dict_links,df_all_teams):
         
         ## fix goals and determine shootout
         shootout_decider = pd.DataFrame([df_hockey_games['Goals_Home'].astype(str).str[-1] == 'S'] or [df_hockey_games['Goals_Away'].astype(str).str[-1] == 'S']).transpose()
+        # add category for Shoot_out_win_home/away or False
         df_hockey_games['Shootout_decider'] = shootout_decider
         df_hockey_games['Goals_Home'] = df_hockey_games['Goals_Home'].astype(str).str.extract('(\d+)')
         df_hockey_games['Goals_Away'] = df_hockey_games['Goals_Away'].astype(str).str.extract('(\d+)')
