@@ -30,6 +30,8 @@ Fill this in later.
 
 # Example
 ## How to use:
+Run `pip` with `requirements.txt` to get required packages installed.   
+
 Just edit `team_names` in `google_calendar_sync.py` and run!   
 The following should populate, terminal print statments   
 And saved `csv/*.csv` files named:   

@@ -16,6 +16,8 @@ from googleapiclient.errors import HttpError
 ## Given Items & Just Change Team Names!
 # delete old hockey games?
 remove_old_hockey = False
+# add old hockey games?
+add_old_flag = True
 # find schedules for these teams
 team_names = ['Team Beer','Team America']
 # main hockey URL page
@@ -30,13 +32,15 @@ API_VERSION = 'v3'
 SCOPES = ['https://www.googleapis.com/auth/calendar']
 calendar_id_hockey = '049ffb2a69b7c97b99ec51811db2cb09eb7c52b2c26d6a461de37da6f3f3438a@group.calendar.google.com'
 
-def get_event(service):
+now_dt = pd.to_datetime('today').to_pydatetime()
+
+def get_cal_event(service):
     # Call the Calendar API, Get Hockey list
     list_name = []
     list_date = []
     list_id = []
+    list_upcoming = []
     page_token = None
-    now = pd.to_datetime('today')
     while True:
         events = service.events().list(calendarId=calendar_id_hockey, pageToken=page_token).execute()
         for event in events['items']:
@@ -45,70 +49,95 @@ def get_event(service):
             list_name.append(event['summary'])
             list_date.append(start)
             list_id.append(event['id'])
+            list_upcoming.append(now_dt < start)
             page_token = events.get('nextPageToken')
         if not page_token:
             break
     
     cal_df = pd.DataFrame({'description':list_name,
                             'date':list_date, 
-                            'id':list_id})
+                            'id':list_id,
+                            'Upcoming_game':list_upcoming})
     print(cal_df)
+    return cal_df
     
+def get_hockey_event(cal_df):
     # call hockey_game_scraper.py, get games
     schedule_data, schedule_data_remaining = hockey_game_scraper.run_scraper(team_names,url_main_league)
     # compare hockey list
     add_index = ~schedule_data['Game_datetime'].isin(cal_df['date'])
-    delete_index = cal_df['date'] < now
-    return schedule_data, cal_df, add_index, delete_index
+    delete_index = cal_df['date'] < now_dt
+    return schedule_data, add_index, delete_index
 
-def create_event(service,schedule_data,add_index):
+def create_event(service,schedule_data,add_index,add_old_flag):
     print('Create Hockey Schedule')
     for index, record in schedule_data[add_index].iterrows():
-        # TO-DO: separate to dif function and update old games (delete and rewrite)
-        # TO-DO: add shootout win/loss, leave empty if they forced to take tie
-        if record['Upcoming_game']:
-            summary_str = f"{record['team_name']} Vs. {record['vs_team']}"
-        else:
-            goals_for = np.where(record['Team_side'] == 'Home', record['Goals_Home'], record['Goals_Away'])
-            goals_against = np.where(record['Team_side'] != 'Home', record['Goals_Home'], record['Goals_Away'])
-            summary_str = f"{record['team_name']} ({goals_for}) Vs. {record['vs_team']} ({goals_against})"
+        # skip old games from populating 
+        # add flag to add old games
+        # think this thru lol.
+        if add_old_flag:
+            pass
+        elif not record['Upcoming_game']:
+            continue
+        
         event = {
-        'summary': summary_str,
-        'location': address_hockey,
-        'description': f"Rink: {record['Rink']}\nJersey: {record['Jersey']}\nBench: {record['Team_side']}",
-        'start': {
-            'dateTime': record['Game_datetime'].strftime("%Y-%m-%dT%H:%M:%S%z"),
-            'timeZone': 'America/Los_Angeles',
-        },
-        'end': {
-            'dateTime': (record['Game_datetime'] + timedelta(hours=1)).strftime("%Y-%m-%dT%H:%M:%S%z"),
-            'timeZone': 'America/Los_Angeles',
-        },
-        'reminders': {
-            'useDefault': False,
-            'overrides': [
-            {'method': 'email', 'minutes': 24 * 60},
-            {'method': 'popup', 'minutes': 60},
-            ],
-        },
+            'summary': f"{record['team_name']} Vs. {record['vs_team']}",
+            'location': address_hockey,
+            'description': f"Rink: {record['Rink']}\nJersey: {record['Jersey']}\nBench: {record['Team_side']}",
+            'start': {
+                'dateTime': record['Game_datetime'].strftime("%Y-%m-%dT%H:%M:%S%z"),
+                'timeZone': 'America/Los_Angeles',
+            },
+            'end': {
+                'dateTime': (record['Game_datetime'] + timedelta(hours=1)).strftime("%Y-%m-%dT%H:%M:%S%z"),
+                'timeZone': 'America/Los_Angeles',
+            },
+            'reminders': {
+                'useDefault': False,
+                'overrides': [
+                {'method': 'email', 'minutes': 24 * 60},
+                {'method': 'popup', 'minutes': 60},
+                ],
+            },
         }
         event = service.events().insert(calendarId=calendar_id_hockey, body=event).execute()
         print(f"{index} Event created: {(event.get('htmlLink'))}")
 
-def update_event():
-    #Update old schedule
-    return
+def update_event(service,cal_df,schedule_data):
+    cal_joined_df = cal_df.merge(schedule_data, left_on = 'date', right_on = 'Game_datetime')
+    for index, record in cal_joined_df.iterrows():
+        if record['Upcoming_game_x']:
+            continue
+        
+        # get existing cal event
+        event = service.events().get(calendarId=calendar_id_hockey, eventId=record['id']).execute()
+
+        #Update old schedule
+        goals_for = np.where(record['Team_side'] == 'Home', record['Goals_Home'], record['Goals_Away'])
+        goals_against = np.where(record['Team_side'] != 'Home', record['Goals_Home'], record['Goals_Away'])
+        if record['shootout_win']:
+            
+        summary_str = f"{record['team_name']} ({goals_for}) Vs. {record['vs_team']} ({goals_against})"
+        
+        # check if event has been updated
+        if (event['summary'] == summary_str):
+            continue
+        
+        # change summary label
+        event['summary'] = summary_str
+        
+        # update event
+        updated_event = service.events().update(calendarId=calendar_id_hockey, eventId=event['id'], body=event).execute()
+
+        print(f"{index} Event updated: {(updated_event.get('htmlLink'))}")
     
-def remove_event(service,cal_df,add_index,delete_index):
+def remove_event(service,cal_df,delete_index):
     # Delete Old Hockey games from calendar
-    if remove_old_hockey:
-        remove_event(cal_df,delete_index)
-    else:
-        print('Delete Old Hockey Schedule')
-        for index, record in cal_df[delete_index].iterrows():
-            # remove old events to calendar
-            service.events().delete(calendarId=calendar_id_hockey, eventId=record['id']).execute()
-            print(f"{index} Event deleted: {record['description']} @ {record['date']}")
+    print('Delete Old Hockey Schedule')
+    for index, record in cal_df[delete_index].iterrows():
+        # remove old events to calendar
+        service.events().delete(calendarId=calendar_id_hockey, eventId=record['id']).execute()
+        print(f"{index} Event deleted: {record['description']} @ {record['date']}")
 
 def main():
     """SJ Adult hockey schedule
@@ -134,20 +163,25 @@ def main():
     try:
         # build gCal API service
         service = build(API_NAME, API_VERSION, credentials=creds)
-        get_event(service)
-        
 
-        # update old cal game to relect score
-        if ~remove_old_hockey:
-            
-            if record['Upcoming_game']:
-                summary_str = f"{record['team_name']} Vs. {record['vs_team']}"
-            else:
-                goals_for = np.where(record['Team_side'] == 'Home', record['Goals_Home'], record['Goals_Away'])
-                goals_against = np.where(record['Team_side'] != 'Home', record['Goals_Home'], record['Goals_Away'])
-                summary_str = f"{record['team_name']} ({goals_for}) Vs. {record['vs_team']} ({goals_against})"
-                    
-                    
+        # get calendar event info 
+        cal_df = get_cal_event(service)
+        
+        # get hockey game info
+        schedule_data, add_index, delete_index = get_hockey_event(cal_df)
+        
+        # add only new games
+        create_event(service,schedule_data,add_index,False)
+        
+        # delete all old games
+        if remove_old_hockey:
+            remove_event(service,cal_df,delete_index)
+        else:
+            # update/add old games with scores
+            create_event(service,schedule_data,add_index,add_old_flag)
+            cal_df = get_cal_event(service)
+            update_event(service,cal_df,schedule_data)
+        
     except HttpError as error:
         print('An error occurred: %s' % error)
 
