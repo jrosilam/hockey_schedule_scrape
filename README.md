@@ -78,22 +78,23 @@ calendar_id_hockey = '049ffb2a69b7c97b99ec51811db2cb09eb7c52b2c26d6a461de37da6f3
 ### Terminal Output
 
 ```terminal
-                                description                date                          id  Upcoming_game
-0    Team Beer (2) Vs. Choking Hazards (10) 2022-09-26 22:30:00  7679l9pj2pos14pgrtiajsgtq8          False
-1    Team Beer (2) Vs. Seal Team Sticks (0) 2022-10-22 21:30:00  m8a19ngihdsrt5pd2hk18pnihg          False
-2        Team Beer (2) Vs. Rebel Scum 1 (6) 2022-10-30 23:15:00  flkg9gc3fmb3pe9f3f1ef0b6ns          False
-3   Team America (4) Vs. Cereal Killers (7) 2022-09-19 23:15:00  su4a8qshdmledvfvskeb1e7cn4          False
-4         Team Beer (5) @ Flying Pandas (4) 2022-09-03 21:45:00  gl0ia8djrqnjcaqjm0q9bjiafk          False
-5   Team America (4) @ Beerbears on Ice (3) 2022-09-10 20:00:00  o3so756qjd429jkdv5355u3at4          False
-6   Team America (2) @ Beerbears on Ice (3) 2022-09-25 17:45:00  oje3qu3552e58s39eoeq0memk8          False
-7            Team America (8) @ K-Wings (1) 2022-10-09 21:00:00  7oc89o4klgd3ebig6uhib5es4c          False
-8       Team Beer (6) @ 3rd Line Scrubs (5) 2022-10-16 19:00:00  h13cd309e7fvhll8269oprqd0o          False
-9         Team Beer (3) @ Buffalo Wings (1) 2022-10-02 20:45:00  s7lb0lsh0rrm4h5iegj9m0ep90          False
-10          Team America (2) @ Stampede (2) 2022-09-28 21:45:00  ta9r9if2ugnbql2hra4eud5iok          False
-11          Team America @ Beerbears on Ice 2022-11-07 22:00:00  ai3mi7b1v8e5tphge52l6gbmjg           True
-12        Team Beer Vs. Fighting Icecocks 2 2022-11-15 21:45:00  chgc9mhiukhpjfep67bik980dg           True
-13      Team Beer (2) Vs. Schrute Farms (9) 2022-10-09 18:00:00  eeleiusgnt3h9h8ehkao9u1f3g          False
-14            Team America @ Cereal Killers 2022-11-12 23:00:00  9t00cr3okrq7mua2ha46v5qdng           True
+                                   description                date                          id  Upcoming_game
+0              Team America @ Beerbears on Ice 2022-11-07 22:00:00  ai3mi7b1v8e5tphge52l6gbmjg           True
+1            Team Beer Vs. Fighting Icecocks 2 2022-11-15 21:45:00  chgc9mhiukhpjfep67bik980dg           True
+2                Team America @ Cereal Killers 2022-11-12 23:00:00  9t00cr3okrq7mua2ha46v5qdng           True
+3            Team Beer (5) @ Flying Pandas (4) 2022-09-03 21:45:00  f45tvabnob30q9l42svupan3kg          False
+4      Team America (4) @ Beerbears on Ice (3) 2022-09-10 20:00:00  lrapps36rdujpgc160idj6ajv0          False
+5      Team America (4) Vs. Cereal Killers (7) 2022-09-19 23:15:00  fn7l2vequrtm33jrdpehj9mdfo          False
+6      Team America (2) @ Beerbears on Ice (3) 2022-09-25 17:45:00  mmn54jhuk52f26m2b0cm1p1vck          False
+7       Team Beer (2) Vs. Choking Hazards (10) 2022-09-26 22:30:00  gu9g10nuba49q4obvukqe293ms          False
+8              Team America (2) @ Stampede (2) 2022-09-28 21:45:00  4i9i10j3tf6ih64dolfvd4ehr4          False
+9            Team Beer (3) @ Buffalo Wings (1) 2022-10-02 20:45:00  ea5kvtcet1pmp1ku0r9emck48s          False
+10         Team Beer (2) Vs. Schrute Farms (9) 2022-10-09 18:00:00  7ipbsnodtjs9or6r85dvnbi7a4          False
+11              Team America (8) @ K-Wings (1) 2022-10-09 21:00:00  t89otgue4jqeveral71rbu6120          False
+12  Team America (6) Vs. Kraken More Beers (5) 2022-10-18 23:15:00  0jk49p7g41rpoac2s7lmn7o5u8          False
+13      Team Beer (2) Vs. Seal Team Sticks (0) 2022-10-22 21:30:00  d57ok4u48nk391ro00devjhpcs          False
+14  Team America (0) Vs. Peter North Stars (2) 2022-10-30 21:00:00  b9k4g83c9s30ua792c69uehob0          False
+15          Team Beer (2) Vs. Rebel Scum 1 (6) 2022-10-30 23:15:00  mfm0i2vafrnlklhu2nadt3gi5s          False
 Index: 0, Team Name: Team America, URL: https://stats.sharksice.timetoscore.com/display-schedule?team=2297&season=55&league=1&stat_class=1
 Index: 1, Team Name: Team Beer, URL: https://stats.sharksice.timetoscore.com/display-schedule?team=4637&season=55&league=1&stat_class=1
    index     Game     team_name              vs_team Team_side Goals_Home Goals_Away  ...    League              Level                 Away              Home       Type       Game_datetime Upcoming_game
@@ -146,30 +147,34 @@ All Team Schedule, games left
 2       16  Team America       Cereal Killers      Away             False 2022-11-12 23:00:00  Sat, Nov 12 @ 11:00 PM  White (C)   Dark
 3       17     Team Beer  Fighting Icecocks 2      Home             False 2022-11-15 21:45:00  Tue, Nov 15 @ 09:45 PM       Grey  Light
 
-Schedule pulled on "Fri Nov 04 2022 04:25 PM"
+Schedule pulled on "Fri Nov 04 2022 04:37 PM"
 
 Schedules printed in "C:\Users\rober\OneDrive\Desktop\code\hockey_schedule_scrape"
 
 Create Hockey Schedule
-15 Event Create: https://www.google.com/calendar/event?eid=aDdqMnZjazlrczc3ZXV0MzdqNGdzbGRlOHMgMDQ5ZmZiMmE2OWI3Yzk3Yjk5ZWM1MTgxMWRiMmNiMDllYjdjNTJiMmMyNmQ2YTQ2MWRlMzdkYTZmM2YzNDM4YUBn
+15 Event Create: https://www.google.com/calendar/event?eid=N3JhcHB1Z2Q4ZnVrbXE3a2tucWl1MXQxbXMgMDQ5ZmZiMmE2OWI3Yzk3Yjk5ZWM1MTgxMWRiMmNiMDllYjdjNTJiMmMyNmQ2YTQ2MWRlMzdkYTZmM2YzNDM4YUBn
 Update Hockey Schedule
-                                description                date                          id  Upcoming_game
-0    Team Beer (2) Vs. Choking Hazards (10) 2022-09-26 22:30:00  7679l9pj2pos14pgrtiajsgtq8          False
-1    Team Beer (2) Vs. Seal Team Sticks (0) 2022-10-22 21:30:00  m8a19ngihdsrt5pd2hk18pnihg          False
-2        Team Beer (2) Vs. Rebel Scum 1 (6) 2022-10-30 23:15:00  flkg9gc3fmb3pe9f3f1ef0b6ns          False
-3   Team America (4) Vs. Cereal Killers (7) 2022-09-19 23:15:00  su4a8qshdmledvfvskeb1e7cn4          False
-4         Team Beer (5) @ Flying Pandas (4) 2022-09-03 21:45:00  gl0ia8djrqnjcaqjm0q9bjiafk          False
-5   Team America (4) @ Beerbears on Ice (3) 2022-09-10 20:00:00  o3so756qjd429jkdv5355u3at4          False
-6   Team America (2) @ Beerbears on Ice (3) 2022-09-25 17:45:00  oje3qu3552e58s39eoeq0memk8          False
-7            Team America (8) @ K-Wings (1) 2022-10-09 21:00:00  7oc89o4klgd3ebig6uhib5es4c          False
-8       Team Beer (6) @ 3rd Line Scrubs (5) 2022-10-16 19:00:00  h13cd309e7fvhll8269oprqd0o          False
-9         Team Beer (3) @ Buffalo Wings (1) 2022-10-02 20:45:00  s7lb0lsh0rrm4h5iegj9m0ep90          False
-10          Team America (2) @ Stampede (2) 2022-09-28 21:45:00  ta9r9if2ugnbql2hra4eud5iok          False
-11          Team America @ Beerbears on Ice 2022-11-07 22:00:00  ai3mi7b1v8e5tphge52l6gbmjg           True
-12        Team Beer Vs. Fighting Icecocks 2 2022-11-15 21:45:00  chgc9mhiukhpjfep67bik980dg           True
-13      Team Beer (2) Vs. Schrute Farms (9) 2022-10-09 18:00:00  eeleiusgnt3h9h8ehkao9u1f3g          False
-14            Team America @ Cereal Killers 2022-11-12 23:00:00  9t00cr3okrq7mua2ha46v5qdng           True
-15                  Team Beer @ Cobra Kai 1 2022-11-09 23:15:00  h7j2vck9ks77eut37j4gslde8s           True
+9 Event Update: https://www.google.com/calendar/event?eid=dWw4MW8wdmZpZGFuNGFua25sMm81ZzAwdTggMDQ5ZmZiMmE2OWI3Yzk3Yjk5ZWM1MTgxMWRiMmNiMDllYjdjNTJiMmMyNmQ2YTQ2MWRlMzdkYTZmM2YzNDM4YUBn
+                                   description                date                          id  Upcoming_game
+0              Team America @ Beerbears on Ice 2022-11-07 22:00:00  ai3mi7b1v8e5tphge52l6gbmjg           True
+1            Team Beer Vs. Fighting Icecocks 2 2022-11-15 21:45:00  chgc9mhiukhpjfep67bik980dg           True
+2                Team America @ Cereal Killers 2022-11-12 23:00:00  9t00cr3okrq7mua2ha46v5qdng           True
+3            Team Beer (5) @ Flying Pandas (4) 2022-09-03 21:45:00  f45tvabnob30q9l42svupan3kg          False
+4      Team America (4) @ Beerbears on Ice (3) 2022-09-10 20:00:00  lrapps36rdujpgc160idj6ajv0          False
+5      Team America (4) Vs. Cereal Killers (7) 2022-09-19 23:15:00  fn7l2vequrtm33jrdpehj9mdfo          False
+6      Team America (2) @ Beerbears on Ice (3) 2022-09-25 17:45:00  mmn54jhuk52f26m2b0cm1p1vck          False
+7       Team Beer (2) Vs. Choking Hazards (10) 2022-09-26 22:30:00  gu9g10nuba49q4obvukqe293ms          False
+8              Team America (2) @ Stampede (2) 2022-09-28 21:45:00  4i9i10j3tf6ih64dolfvd4ehr4          False
+9            Team Beer (3) @ Buffalo Wings (1) 2022-10-02 20:45:00  ea5kvtcet1pmp1ku0r9emck48s          False
+10         Team Beer (2) Vs. Schrute Farms (9) 2022-10-09 18:00:00  7ipbsnodtjs9or6r85dvnbi7a4          False
+11              Team America (8) @ K-Wings (1) 2022-10-09 21:00:00  t89otgue4jqeveral71rbu6120          False
+12  Team America (6) Vs. Kraken More Beers (5) 2022-10-18 23:15:00  0jk49p7g41rpoac2s7lmn7o5u8          False
+13      Team Beer (2) Vs. Seal Team Sticks (0) 2022-10-22 21:30:00  d57ok4u48nk391ro00devjhpcs          False
+14  Team America (0) Vs. Peter North Stars (2) 2022-10-30 21:00:00  b9k4g83c9s30ua792c69uehob0          False
+15          Team Beer (2) Vs. Rebel Scum 1 (6) 2022-10-30 23:15:00  mfm0i2vafrnlklhu2nadt3gi5s          False
+16                     Team Beer @ Cobra Kai 1 2022-11-09 23:15:00  7rappugd8fukmq7kknqiu1t1ms           True
+17                 Team Beer @ 3rd Line Scrubs 2022-10-16 19:00:00  ul81o0vfidan4anknl2o5g00u8          False
+17 Event updated: https://www.google.com/calendar/event?eid=dWw4MW8wdmZpZGFuNGFua25sMm81ZzAwdTggMDQ5ZmZiMmE2OWI3Yzk3Yjk5ZWM1MTgxMWRiMmNiMDllYjdjNTJiMmMyNmQ2YTQ2MWRlMzdkYTZmM2YzNDM4YUBn
 ```
 
 ### Google Calendar Output
