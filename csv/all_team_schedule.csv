@@ -1,19 +1,19 @@
-team_name,vs_team,Team_side,Upcoming_game,Goals_Home,Goals_Away,Game_datetime,Game_datetime_neat,Rink,Jersey
-Team Beer,Flying Pandas,Away,False,4,5,2022-09-03 21:45:00,"Sat, Sep 03 @ 09:45 PM",Orange (N),Dark
-Team America,Beerbears on Ice,Away,False,3,4,2022-09-10 20:00:00,"Sat, Sep 10 @ 08:00 PM",Grey,Dark
-Team America,Cereal Killers,Home,False,4,7,2022-09-19 23:15:00,"Mon, Sep 19 @ 11:15 PM",Grey,Light
-Team America,Beerbears on Ice,Away,False,3,2,2022-09-25 17:45:00,"Sun, Sep 25 @ 05:45 PM",Sharks,Dark
-Team Beer,Choking Hazards,Home,False,2,10,2022-09-26 22:30:00,"Mon, Sep 26 @ 10:30 PM",Sharks,Light
-Team America,Stampede,Away,False,2,2,2022-09-28 21:45:00,"Wed, Sep 28 @ 09:45 PM",White (C),Dark
-Team Beer,Buffalo Wings,Away,False,1,3,2022-10-02 20:45:00,"Sun, Oct 02 @ 08:45 PM",Sharks,Dark
-Team Beer,Schrute Farms,Home,False,2,9,2022-10-09 18:00:00,"Sun, Oct 09 @ 06:00 PM",Grey,Light
-Team America,K-Wings,Away,False,1,8,2022-10-09 21:00:00,"Sun, Oct 09 @ 09:00 PM",Orange (N),Dark
-Team Beer,3rd Line Scrubs,Away,False,5,6,2022-10-16 19:00:00,"Sun, Oct 16 @ 07:00 PM",Grey,Dark
-Team America,Kraken More Beers,Home,False,6,5,2022-10-18 23:15:00,"Tue, Oct 18 @ 11:15 PM",Grey,Light
-Team Beer,Seal Team Sticks,Home,False,2,0,2022-10-22 21:30:00,"Sat, Oct 22 @ 09:30 PM",Sharks,Light
-Team America,Peter North Stars,Home,False,0,2,2022-10-30 21:00:00,"Sun, Oct 30 @ 09:00 PM",Sharks,Light
-Team Beer,Rebel Scum 1,Home,False,2,6,2022-10-30 23:15:00,"Sun, Oct 30 @ 11:15 PM",Black (E),Light
-Team America,Beerbears on Ice,Away,True,,,2022-11-07 22:00:00,"Mon, Nov 07 @ 10:00 PM",Black (E),Dark
-Team Beer,Cobra Kai 1,Away,True,,,2022-11-09 23:15:00,"Wed, Nov 09 @ 11:15 PM",Black (E),Dark
-Team America,Cereal Killers,Away,True,,,2022-11-12 23:00:00,"Sat, Nov 12 @ 11:00 PM",White (C),Dark
-Team Beer,Fighting Icecocks 2,Home,True,,,2022-11-15 21:45:00,"Tue, Nov 15 @ 09:45 PM",Grey,Light
+team_name,vs_team,Team_side,Upcoming_game,Goals_Home,Goals_Away,Shootout_decider,Game_datetime,Game_datetime_neat,Rink,Jersey
+Team Beer,Flying Pandas,Away,False,4,5,True,2022-09-03 21:45:00,"Sat, Sep 03 @ 09:45 PM",Orange (N),Dark
+Team America,Beerbears on Ice,Away,False,3,4,True,2022-09-10 20:00:00,"Sat, Sep 10 @ 08:00 PM",Grey,Dark
+Team America,Cereal Killers,Home,False,4,7,False,2022-09-19 23:15:00,"Mon, Sep 19 @ 11:15 PM",Grey,Light
+Team America,Beerbears on Ice,Away,False,3,2,False,2022-09-25 17:45:00,"Sun, Sep 25 @ 05:45 PM",Sharks,Dark
+Team Beer,Choking Hazards,Home,False,2,10,False,2022-09-26 22:30:00,"Mon, Sep 26 @ 10:30 PM",Sharks,Light
+Team America,Stampede,Away,False,2,2,False,2022-09-28 21:45:00,"Wed, Sep 28 @ 09:45 PM",White (C),Dark
+Team Beer,Buffalo Wings,Away,False,1,3,False,2022-10-02 20:45:00,"Sun, Oct 02 @ 08:45 PM",Sharks,Dark
+Team Beer,Schrute Farms,Home,False,2,9,False,2022-10-09 18:00:00,"Sun, Oct 09 @ 06:00 PM",Grey,Light
+Team America,K-Wings,Away,False,1,8,False,2022-10-09 21:00:00,"Sun, Oct 09 @ 09:00 PM",Orange (N),Dark
+Team Beer,3rd Line Scrubs,Away,False,5,6,False,2022-10-16 19:00:00,"Sun, Oct 16 @ 07:00 PM",Grey,Dark
+Team America,Kraken More Beers,Home,False,6,5,False,2022-10-18 23:15:00,"Tue, Oct 18 @ 11:15 PM",Grey,Light
+Team Beer,Seal Team Sticks,Home,False,2,0,False,2022-10-22 21:30:00,"Sat, Oct 22 @ 09:30 PM",Sharks,Light
+Team America,Peter North Stars,Home,False,0,2,False,2022-10-30 21:00:00,"Sun, Oct 30 @ 09:00 PM",Sharks,Light
+Team Beer,Rebel Scum 1,Home,False,2,6,False,2022-10-30 23:15:00,"Sun, Oct 30 @ 11:15 PM",Black (E),Light
+Team America,Beerbears on Ice,Away,True,,,False,2022-11-07 22:00:00,"Mon, Nov 07 @ 10:00 PM",Black (E),Dark
+Team Beer,Cobra Kai 1,Away,True,,,False,2022-11-09 23:15:00,"Wed, Nov 09 @ 11:15 PM",Black (E),Dark
+Team America,Cereal Killers,Away,True,,,False,2022-11-12 23:00:00,"Sat, Nov 12 @ 11:00 PM",White (C),Dark
+Team Beer,Fighting Icecocks 2,Home,True,,,False,2022-11-15 21:45:00,"Tue, Nov 15 @ 09:45 PM",Grey,Light

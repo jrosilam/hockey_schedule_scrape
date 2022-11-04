@@ -54,16 +54,17 @@ def get_schedule(dict_links,df_all_teams):
 
         ## playing against
         df_hockey_games['vs_team'] = pd.concat([df_hockey_games['Home'][~idx_team_side],df_hockey_games['Away'][idx_team_side]]).sort_index()
+
+        ## see if there is games left
+        df_hockey_games['Upcoming_game'] = pd.to_datetime('today') < df_hockey_games['Game_datetime']
         
         ## fix goals and determine shootout
-        shootout_decider = pd.DataFrame([df_hockey_games['Goals_Home'].astype(str).str[-1] == 'S'] or [df_hockey_games['Goals_Away'].astype(str).str[-1] == 'S']).transpose()
+        shootout_decider = pd.DataFrame([df_hockey_games['Goals_Home'].astype(str).str[-1] == 'S'] or [df_hockey_games['Goals_Away'].astype(str).str[-1] == 'S']).T
+
         # add category for Shoot_out_win_home/away or False
         df_hockey_games['Shootout_decider'] = shootout_decider
         df_hockey_games['Goals_Home'] = df_hockey_games['Goals_Home'].astype(str).str.extract('(\d+)')
         df_hockey_games['Goals_Away'] = df_hockey_games['Goals_Away'].astype(str).str.extract('(\d+)')
-
-        ## see if there is games left
-        df_hockey_games['Upcoming_game'] = pd.to_datetime('today') < df_hockey_games['Game_datetime']
 
         ## game time pretty format
         df_hockey_games['Game_datetime_neat'] = df_hockey_games['Game_datetime'].dt.strftime('%a, %b %d @ %I:%M %p')
@@ -76,13 +77,13 @@ def get_schedule(dict_links,df_all_teams):
 
     ## clean data        
     ## reorder
-    cols_to_order = ['index', 'Game', 'team_name', 'vs_team', 'Team_side', 'Goals_Home', 'Goals_Away', 'Game_datetime_neat', 'Rink', 'Jersey']
+    cols_to_order = ['index', 'Game', 'team_name', 'vs_team', 'Team_side', 'Goals_Home', 'Goals_Away', 'Shootout_decider', 'Game_datetime_neat', 'Rink', 'Jersey']
     new_columns = cols_to_order + (df_all_teams.columns.drop(cols_to_order).tolist())
     df_all_teams = df_all_teams[new_columns]
     df_all_teams
 
     ## subq-date
-    schedule_data = df_all_teams.loc[:,['team_name', 'vs_team', 'Team_side', 'Upcoming_game', 'Goals_Home', 'Goals_Away', 'Game_datetime', 'Game_datetime_neat', 'Rink', 'Jersey']]
+    schedule_data = df_all_teams.loc[:,['team_name', 'vs_team', 'Team_side', 'Upcoming_game', 'Goals_Home', 'Goals_Away', 'Shootout_decider', 'Game_datetime', 'Game_datetime_neat', 'Rink', 'Jersey']]
     schedule_data.sort_values(by='Game_datetime', ascending=True, inplace=True)
     # schedule_data.drop(columns='Game_datetime',inplace=True)
 

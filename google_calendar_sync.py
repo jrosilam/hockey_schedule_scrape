@@ -115,8 +115,7 @@ def update_event(service,cal_df,schedule_data):
         #Update old schedule
         goals_for = np.where(record['Team_side'] == 'Home', record['Goals_Home'], record['Goals_Away'])
         goals_against = np.where(record['Team_side'] != 'Home', record['Goals_Home'], record['Goals_Away'])
-        if record['shootout_win']:
-            
+        
         summary_str = f"{record['team_name']} ({goals_for}) Vs. {record['vs_team']} ({goals_against})"
         
         # check if event has been updated

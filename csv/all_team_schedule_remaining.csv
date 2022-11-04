@@ -1,5 +1,5 @@
-team_name,vs_team,Team_side,Game_datetime,Game_datetime_neat,Rink,Jersey
-Team America,Beerbears on Ice,Away,2022-11-07 22:00:00,"Mon, Nov 07 @ 10:00 PM",Black (E),Dark
-Team Beer,Cobra Kai 1,Away,2022-11-09 23:15:00,"Wed, Nov 09 @ 11:15 PM",Black (E),Dark
-Team America,Cereal Killers,Away,2022-11-12 23:00:00,"Sat, Nov 12 @ 11:00 PM",White (C),Dark
-Team Beer,Fighting Icecocks 2,Home,2022-11-15 21:45:00,"Tue, Nov 15 @ 09:45 PM",Grey,Light
+team_name,vs_team,Team_side,Shootout_decider,Game_datetime,Game_datetime_neat,Rink,Jersey
+Team America,Beerbears on Ice,Away,False,2022-11-07 22:00:00,"Mon, Nov 07 @ 10:00 PM",Black (E),Dark
+Team Beer,Cobra Kai 1,Away,False,2022-11-09 23:15:00,"Wed, Nov 09 @ 11:15 PM",Black (E),Dark
+Team America,Cereal Killers,Away,False,2022-11-12 23:00:00,"Sat, Nov 12 @ 11:00 PM",White (C),Dark
+Team Beer,Fighting Icecocks 2,Home,False,2022-11-15 21:45:00,"Tue, Nov 15 @ 09:45 PM",Grey,Light
