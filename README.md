@@ -1,47 +1,54 @@
 # hockey_schedule_scrape Git Repo
-This was made by [Jesus R Rosila Mares](https://github.com/jrosilam) to find hockey schedule and plan better.   
+
+This was made by [Jesus R Rosila Mares](https://github.com/jrosilam) to find hockey schedule and plan better.
 (aswell as figure out what jersey color we are)
 
 # Table of Contents
+
 - [hockey_schedule_scrape Git Repo](#hockey-schedule-scrape-git-repo)
 - [Table of Contents](#table-of-contents)
 - [To-Do](#to-do)
 - [New User](#new-user)
 - [Example](#example)
-  * [How to use:](#how-to-use-)
-  * [Expected Input:](#expected-input-)
-  * [Expected Output:](#expected-output-)
-    + [Terminal Output:](#terminal-output-)
-    + [Google Calendar Output:](#google-calendar-output-)
+  - [How to use:](#how-to-use-)
+  - [Expected Input:](#expected-input-)
+  - [Expected Output:](#expected-output-)
+    - [Terminal Output:](#terminal-output-)
+    - [Google Calendar Output:](#google-calendar-output-)
       - [With `remove_old_hockey = False`](#with--remove-old-hockey---false-)
       - [With `remove_old_hockey = True`](#with--remove-old-hockey---true-)
 
 # To-Do
+
 - [ ] Make job to run every morning.
-- [ ] Update cal for old games fix ties and shootouts
-- [ ] Update cal for Team A vs. Team B and/or Team A @ Team B.
 - [ ] Streamline Calendar generation for new users.
 - [ ] finish new user section.
 
 # New User
+
 [python google cal API setup](https://developers.google.com/calendar/api/quickstart/python)
 
 Fill this in later.
 
 # Example
-## How to use:
-Run `pip` with `requirements.txt` to get required packages installed.   
 
-Just edit `team_names` in `google_calendar_sync.py` and run!   
-The following should populate, terminal print statments   
-And saved `csv/*.csv` files named:   
+## How to use
+
+Run `pip` with `requirements.txt` to get required packages installed.
+
+Just edit `team_names` in `google_calendar_sync.py` and run!
+The following should populate, terminal print statments
+And saved `csv/*.csv` files named:
+
 - `all_team_schedule.csv`
 - `all_team_schedule_remaining.csv`
 
-## Expected Input:
+## Expected Input
+
 Adjust teamnames to whatever team you are using.  
 If you want to delete old events.
-```py 
+
+```py
 ## Given Items & Just Change Team Names!
 # delete old hockey games?
 remove_old_hockey = False
@@ -52,8 +59,10 @@ url_main_league = 'https://stats.sharksice.timetoscore.com/display-stats.php?lea
 # ice rink hockey SJ
 address_hockey = '1500 S 10th St, San Jose, CA 95112'
 ```
-Edit `calendar_id_hockey` and create a `credentials.json` from [here](https://developers.google.com/calendar/api/quickstart/python)!   
+
+Edit `calendar_id_hockey` and create a `credentials.json` from [here](https://developers.google.com/calendar/api/quickstart/python)!
 Skip *Configure the sample* and *Run the sample*.
+
 ```py
 # API access info
 # CLINET_SECRET_FILE = 'credentials.json'
@@ -63,8 +72,10 @@ SCOPES = ['https://www.googleapis.com/auth/calendar']
 calendar_id_hockey = '049ffb2a69b7c97b99ec51811db2cb09eb7c52b2c26d6a461de37da6f3f3438a@group.calendar.google.com'
 ```
 
-## Expected Output:
-### Terminal Output:
+## Expected Output
+
+### Terminal Output
+
 ```terminal
                            description                date                          id
 0       Team Beer Vs. Seal Team Sticks 2022-10-22 21:30:00  cir77fqoo0ailipkannthsbrl4
@@ -134,10 +145,14 @@ Delete Old Hockey Schedule
 10 Event deleted: Team America Vs. Kraken More Beers @ 2022-10-18 23:15:00
 ```
 
-### Google Calendar Output:
+### Google Calendar Output
+
 #### With `remove_old_hockey = False`
+
 ![Google_Cal](/pics/Google_Cal_False.png)
+
 #### With `remove_old_hockey = True`
+
 ![Google_Cal](/pics/Google_Cal_True.png)
 
 ----

@@ -70,9 +70,13 @@ def get_hockey_event(cal_df):
     return schedule_data, add_index, delete_index
 
 def create_event(service,schedule_data,add_index,add_old_flag):
-    print('Create Hockey Schedule')
+    create_update_str = 'Create'
+    if add_old_flag:
+        create_update_str = 'Update'
+    print(f"{create_update_str} Hockey Schedule")
     for index, record in schedule_data[add_index].iterrows():
         # skip old games from populating 
+        add_index[index] = False
         # add flag to add old games
         # think this thru lol.
         if add_old_flag:
@@ -80,8 +84,14 @@ def create_event(service,schedule_data,add_index,add_old_flag):
         elif not record['Upcoming_game']:
             continue
         
+        if record['Team_side'] == 'Home':
+            str_split_bench = 'Vs.'
+        else:
+            str_split_bench = '@'
+            
+        summary_str = f"{record['team_name']} {str_split_bench} {record['vs_team']}"
         event = {
-            'summary': f"{record['team_name']} Vs. {record['vs_team']}",
+            'summary': summary_str,
             'location': address_hockey,
             'description': f"Rink: {record['Rink']}\nJersey: {record['Jersey']}\nBench: {record['Team_side']}",
             'start': {
@@ -101,7 +111,7 @@ def create_event(service,schedule_data,add_index,add_old_flag):
             },
         }
         event = service.events().insert(calendarId=calendar_id_hockey, body=event).execute()
-        print(f"{index} Event created: {(event.get('htmlLink'))}")
+        print(f"{index} Event {create_update_str}: {(event.get('htmlLink'))}")
 
 def update_event(service,cal_df,schedule_data):
     cal_joined_df = cal_df.merge(schedule_data, left_on = 'date', right_on = 'Game_datetime')
@@ -116,7 +126,12 @@ def update_event(service,cal_df,schedule_data):
         goals_for = np.where(record['Team_side'] == 'Home', record['Goals_Home'], record['Goals_Away'])
         goals_against = np.where(record['Team_side'] != 'Home', record['Goals_Home'], record['Goals_Away'])
         
-        summary_str = f"{record['team_name']} ({goals_for}) Vs. {record['vs_team']} ({goals_against})"
+        if record['Team_side'] == 'Home':
+            str_split_bench = 'Vs.'
+        else:
+            str_split_bench = '@'
+            
+        summary_str = f"{record['team_name']} ({goals_for}) {str_split_bench} {record['vs_team']} ({goals_against})"
         
         # check if event has been updated
         if (event['summary'] == summary_str):

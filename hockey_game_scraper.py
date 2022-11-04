@@ -85,6 +85,7 @@ def get_schedule(dict_links,df_all_teams):
     ## subq-date
     schedule_data = df_all_teams.loc[:,['team_name', 'vs_team', 'Team_side', 'Upcoming_game', 'Goals_Home', 'Goals_Away', 'Shootout_decider', 'Game_datetime', 'Game_datetime_neat', 'Rink', 'Jersey']]
     schedule_data.sort_values(by='Game_datetime', ascending=True, inplace=True)
+    schedule_data.reset_index(inplace=True)
     # schedule_data.drop(columns='Game_datetime',inplace=True)
 
     ## remaining games
